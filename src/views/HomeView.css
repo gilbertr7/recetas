@@ -28,3 +28,65 @@ body {
     text-align: center;
     margin: 4px 0 0;
 }
+
+.home__recetas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin: 40px 0;
+  padding: 0 20px;
+}
+
+.receta-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 320px;
+  max-width: 100%;
+  padding: 24px;
+  border: 2px solid #34302b;
+  border-radius: 32px;
+  box-shadow: 4px 5px 0 rgb(52 48 43 / 18%);
+  color: #34302b;
+  font-family: 'Segoe Print', 'Bradley Hand', cursive;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.receta-card--amarilla {
+  background-color: #fff0a6;
+}
+
+.receta-card--azul {
+  background-color: #cce8f4;
+}
+
+.receta-card__titulo {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.receta-card__imagen {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.receta-card__enlace {
+  align-self: flex-end;
+  font-size: 14px;
+}
+
+.receta-card:hover {
+  transform: translateY(-4px);
+}
+
+.receta-card:focus-visible {
+  outline: 3px solid #b84b20;
+  outline-offset: 5px;
+}
