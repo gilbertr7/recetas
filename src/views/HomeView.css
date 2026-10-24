@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #fffdf5;
+
+    background-image: repeating-linear-gradient(to bottom,
+            transparent 0px,
+            transparent 31px,
+            #c9ddeb 31px,
+            #c9ddeb 32px);
+}
+
+.home__titulo {
+    font-family: 'Segoe Print', 'Bradley Hand', cursive;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: bolder;
+    color: #34302b;
+    text-align: center;
+    margin: 40px 0 0;
+    line-height: 1.2;
+}
+
+.autor {
+    font-family: 'Segoe Print', 'Bradley Hand', cursive;
+    font-size: 16px;
+    font-weight: bold;
+    color: #686058;
+    text-align: center;
+    margin: 4px 0 0;
+}
