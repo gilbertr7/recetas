@@ -1,11 +1,12 @@
-import React from 'react'
 import "./Receta1.css";
 
 export default function Receta1() {
   return (
     <article className="receta">
       <p className="receta__descripcion">
-        Una hamburguesa casera con queso derretido y tus ingredientes favoritos.
+        <span>
+          Una hamburguesa casera con queso derretido y tus ingredientes favoritos.
+        </span>
       </p>
       <section className="receta__ingredientes">
         <h3 className="receta__subtitulo">Ingredientes</h3>
@@ -23,7 +24,7 @@ export default function Receta1() {
       <section className="receta__preparacion">
         <h3 className="receta__subtitulo">Preparación</h3>
 
-        <ol className="receta__lista">
+        <ol className="receta__lista receta__lista--pasos">
           <li>Lava la lechuga y el tomate. Corta el tomate en rodajas.</li>
           <li>
             Forma una hamburguesa con la carne molida y sazona con sal y

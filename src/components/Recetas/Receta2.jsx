@@ -4,7 +4,7 @@ export default function Receta2() {
   return (
     <article className="receta2">
       <p className="receta2__descripcion">
-        Una pizza casera con tomate, mozzarella y albahaca fresca.
+        <span>Una pizza casera con tomate, mozzarella y albahaca fresca.</span>
       </p>
       <section className="receta2__seccion">
         <h3 className="receta2__subtitulo">Ingredientes</h3>
@@ -19,7 +19,7 @@ export default function Receta2() {
       </section>
       <section className="receta2__seccion">
         <h3 className="receta2__subtitulo">Preparación</h3>
-        <ol className="receta2__lista">
+        <ol className="receta2__lista receta2__lista--pasos">
           <li>Precalienta el horno según las indicaciones de la masa.</li>
           <li>Coloca la base en una bandeja y extiende la salsa de tomate.</li>
           <li>Distribuye la mozzarella y agrega el aceite y la sal.</li>

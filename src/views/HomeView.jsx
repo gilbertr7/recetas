@@ -7,72 +7,141 @@ import { init } from "emoji-mart";
 
 init({ data });
 
+const ANILLAS = Array.from({ length: 14 });
+
+const RECETAS = [
+  {
+    id: 1,
+    numero: "01",
+    titulo: "Hamburguesa con queso",
+    imagen: "/assets/images/hamburguesa.jpg",
+    alt: "Hamburguesa con queso",
+    color: "amarilla",
+    Contenido: Receta1,
+  },
+  {
+    id: 2,
+    numero: "02",
+    titulo: "Pizza margarita",
+    imagen: "/assets/images/pizza.jpg",
+    alt: "Pizza margarita",
+    color: "azul",
+    Contenido: Receta2,
+  },
+];
+
 export default function HomeView() {
   const [recetaAbierta, setRecetaAbierta] = useState(null);
+
+  const fecha = new Date().toLocaleDateString("es-MX", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   function alternarReceta(numero) {
     setRecetaAbierta((actual) => (actual === numero ? null : numero));
   }
-  
+
   return (
-    <main>
-      <div>
-        <h1 className="home__titulo">
-          <em-emoji id="hamburger" set="apple" size="1em"></em-emoji>
-          {" Recetas UT "}
-          <em-emoji id="pizza" set="apple" size="1em"></em-emoji>
-        </h1>
-        <p className="autor">Por Gilberto Ruiz</p>
+    <main className="libreta">
+      <div className="libreta__espiral" aria-hidden="true">
+        {ANILLAS.map((_, i) => (
+          <span key={i} className="libreta__anilla" />
+        ))}
       </div>
-{      /**Recetas */}
-      <div className="home__recetas">
-{        /**Primera receta */}
-        <div className={`receta-card receta-card--amarilla${recetaAbierta === 1 ? " receta-card--abierta" : ""}`}>
-          <button
-            type="button"
-            className="receta-card__boton"
-            onClick={() => alternarReceta(1)}
-            aria-expanded={recetaAbierta === 1}
-            aria-controls="contenido-receta-1"
-          >
-            <span className="receta-card__titulo">Hamburguesa con queso</span>
 
-            <img
-              className="receta-card__imagen"
-              src="/assets/images/hamburguesa.jpg"
-              alt="Hamburguesa con queso"
-            />
+      <header className="home__cabecera">
+        <p className="home__fecha">{fecha}</p>
 
-            <span className="receta-card__enlace">
-              {recetaAbierta === 1 ? "Cerrar receta ↑" : "Ver receta…"}
-            </span>
-          </button>
-
-          <div id="contenido-receta-1" hidden={recetaAbierta !== 1}>
-            <Receta1 />
-          </div>
-        </div>
-{        /**Segunda receta */}
-        <div className={`receta-card receta-card--azul${recetaAbierta === 2 ? " receta-card--abierta" : ""}`}>
-          <button
-            type="button"
-            className="receta-card__boton"
-            onClick={() => alternarReceta(2)}
-            aria-expanded={recetaAbierta === 2}
-            aria-controls="contenido-receta-2"
-          >
-          <span className="receta-card__titulo">Pizza margarita</span>
-
-          <img className="receta-card__imagen" src="/assets/images/pizza.jpg" alt="Pizza margarita" />
-
-          <span className="receta-card__enlace">
-            {recetaAbierta === 2 ? "Cerrar receta ↑" : "Ver receta…"}
+        <h1 className="home__titulo">
+          <em-emoji id="hamburger" set="apple" size="1em" />
+          <span className="home__titulo-texto">
+            Recetas <span className="home__ut">UT</span>
           </span>
-          </button>
-          <div id="contenido-receta-2" hidden={recetaAbierta !== 2}>
-            <Receta2 />
-          </div>
-        </div>
+          <em-emoji id="pizza" set="apple" size="1em" />
+        </h1>
+
+        <svg
+          className="home__raya"
+          viewBox="0 0 420 22"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            d="M6 15C82 5 166 3 244 7c50 2.7 103 5 170 1"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="4"
+            strokeLinecap="round"
+          />
+          <path
+            d="M46 20c70-5 140-6 212-3"
+            fill="none"
+            stroke="#c2563a"
+            strokeWidth="3"
+            strokeLinecap="round"
+            opacity=".5"
+          />
+        </svg>
+
+        <p className="autor">por Gilberto Ruiz</p>
+      </header>
+
+      <div
+        className={`home__recetas${
+          recetaAbierta ? " home__recetas--con-abierta" : ""
+        }`}
+      >
+        {RECETAS.map(
+          ({ id, numero, titulo, imagen, alt, color, Contenido }) => {
+            const abierta = recetaAbierta === id;
+
+            return (
+              <article
+                key={id}
+                className={`receta-card receta-card--${color}${
+                  abierta ? " receta-card--abierta" : ""
+                }`}
+              >
+                <span className="receta-card__cinta" aria-hidden="true" />
+                <span className="receta-card__etiqueta" aria-hidden="true">
+                  nº {numero}
+                </span>
+
+                <button
+                  type="button"
+                  className="receta-card__boton"
+                  onClick={() => alternarReceta(id)}
+                  aria-expanded={abierta}
+                  aria-controls={`contenido-receta-${id}`}
+                >
+                  <span className="receta-card__titulo">{titulo}</span>
+
+                  <span className="receta-card__foto">
+                    <img
+                      className="receta-card__imagen"
+                      src={imagen}
+                      alt={alt}
+                    />
+                  </span>
+
+                  <span className="receta-card__enlace">
+                    {abierta ? "Cerrar receta ↑" : "Ver receta →"}
+                  </span>
+                </button>
+
+                <div
+                  id={`contenido-receta-${id}`}
+                  className="receta-card__contenido"
+                  hidden={!abierta}
+                >
+                  <Contenido />
+                </div>
+              </article>
+            );
+          },
+        )}
       </div>
     </main>
   );
